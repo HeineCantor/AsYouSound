@@ -21,6 +21,9 @@ h4, h5 {
 h6 {
 	font-weight:500;
 }
+.image-upload>input {
+  display: none;
+}
 .main-container{
   padding-top: 50px;
   border: #000000 1px solid;

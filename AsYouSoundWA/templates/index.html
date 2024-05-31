@@ -18,27 +18,31 @@
             <h1> </h1>
         </div>
         <section class="banner" data-scroll-index='0'>
-        <div class="banner-overlay">
-            <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-12">
-                <div class="banner-text">
-                    <h2 class="white-bold">As You Sound</h2>
-                    <h6 class="white">Explore what you sound like.</h6>
-                    <p class="banner-text white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit neque massa, sit amet tristique ante porta ut. In sodales et justo vel vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+            <div class="banner-overlay">
+                <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                    <div class="banner-text">
+                        <h2 class="white-bold">As You Sound</h2>
+                        <h6 class="white">Explore what you sound like.</h6>
+                        <p class="banner-text white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit neque massa, sit amet tristique ante porta ut. In sodales et justo vel vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12"> <img src="{% static 'images/music.png' %}" class="img-fluid wow fadeInUp"/> </div>
                 </div>
                 </div>
-                <div class="col-md-4 col-sm-12"> <img src="{% static 'images/music.png' %}" class="img-fluid wow fadeInUp"/> </div>
             </div>
-            </div>
-        </div>
-        <span class="svg-wave"> <img class="svg-hero" src="{% static 'images/applight-wave.svg' %}"> </span> </section>
+            <span class="svg-wave"> <img class="svg-hero" src="{% static 'images/applight-wave.svg' %}"> </span> 
+        </section>
+        <br>
         <div class="container">
-            <h1 class="black">Upload a picture and listen!</h1>
+            <h1 class="black" style="text-align: center;">Upload a picture and listen!</h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                <input type="file" name="imageFile" />
+                <center>
+                    <input id="file-input" type="file" name="imageFile" />
+                </center>
                 <button class="btn-grad w-100 text-uppercase" type="submit" name="submit" value="Upload">Submit</button>
             </form>
 
