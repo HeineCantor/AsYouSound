@@ -43,8 +43,8 @@
             </form>
 
             {% if predictions %}
-                <audio id="audioPlayer" class="w-100" controls src="{% get_media_prefix %}{{ audioFilePath }}">Your browser does not support the audio element.</audio>
                 <center><h2 class="black">Here's a <b>{{ labeledEmotion }}</b> song for you!</h2></center>
+                <audio id="audioPlayer" class="w-100" controls src="{% get_media_prefix %}{{ audioFilePath }}">Your browser does not support the audio element.</audio>
             {% endif %}
         </div>
 

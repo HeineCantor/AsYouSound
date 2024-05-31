@@ -92,6 +92,8 @@ def generate_song(mood_vector, song_name):
 
     generated_track_out = generated_track * 127
 
+    generated_track_out = generated_track_out[:, 32:, :] # cut off the first 32 steps of silence
+
     piano_track = pypianoroll.StandardTrack(name = 'Piano', program = 0, is_drum = False, pianoroll = generated_track_out[0, :, :].detach().cpu().numpy())
     guitar_track = pypianoroll.StandardTrack(name = 'Guitar', program = 24, is_drum = False, pianoroll = generated_track_out[1, :, :].detach().cpu().numpy())
     bass_track = pypianoroll.StandardTrack(name = 'Bass', program = 32, is_drum = False, pianoroll = generated_track_out[2, :, :].cpu().detach().numpy())
