@@ -1,18 +1,58 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>As You Sound WA</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>As You Sound WA</h1>
+        <div class="header">
+            <h1> </h1>
+        </div>
+        <section class="banner" data-scroll-index='0'>
+        <div class="banner-overlay">
+            <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                <div class="banner-text">
+                    <h2 class="white-bold">As You Sound</h2>
+                    <h6 class="white">Explore what you sound like.</h6>
+                    <p class="banner-text white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit neque massa, sit amet tristique ante porta ut. In sodales et justo vel vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                </div>
+                </div>
+                <div class="col-md-4 col-sm-12"> <img src="{% static 'images/music.png' %}" class="img-fluid wow fadeInUp"/> </div>
+            </div>
+            </div>
+        </div>
+        <span class="svg-wave"> <img class="svg-hero" src="{% static 'images/applight-wave.svg' %}"> </span> </section>
+        <div class="container">
+            <h1 class="black">Upload a picture and listen!</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+                <input type="file" name="imageFile" />
+                <button class="btn-grad w-100 text-uppercase" type="submit" name="submit" value="Upload">Submit</button>
+            </form>
 
-            <input type="file" name="imageFile" />
-            <input type="submit" name="submit" value="Upload" />
-        </form>
+            {% if predictions %}
+                <audio id="audioPlayer" class="w-100" controls src="{% get_media_prefix %}{{ audioFilePath }}">Your browser does not support the audio element.</audio>
+                <center><h2 class="black">Here's a <b>{{ labeledEmotion }}</b> song for you!</h2></center>
+            {% endif %}
+        </div>
 
-        {{ predictions }}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> 
+        <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+        <!-- scrollIt js --> 
+        <script src="{% static 'js/scrollIt.min.js' %}"></script> 
+        <script src="{% static 'js/wow.min.js' %}"></script> 
     </body>
 </html>

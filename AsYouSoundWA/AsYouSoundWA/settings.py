@@ -12,11 +12,14 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import keras
 import cv2
+import pickle
 
 FACE_CASCADER = cv2.CascadeClassifier('models/haarcascade_frontalface_alt2.xml')
 
 IMAGE_MODEL_PATH = 'models/full_kdef_VGG16_finetuned.h5'
 IMAGE_MODEL = keras.models.load_model(IMAGE_MODEL_PATH)
+
+POOL_DICT = pickle.load(open('models/pools.pkl', 'rb'))
 
 from pathlib import Path
 
@@ -124,6 +127,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    "/var/www/static/",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
