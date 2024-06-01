@@ -24,21 +24,21 @@ def index(request):
             file_name = default_storage.save(file.name, file)
             file_path = default_storage.path(file_name)
 
-            image = load_img(file_path)
+            #image = load_img(file_path)
+            image = cv2.imread(file_path)
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-            faces = settings.FACE_CASCADER.detectMultiScale(cv2.imread(file_path), 1.3, 5)
-            print("DEBUG: ", image.size)
+            faces = settings.FACE_CASCADER.detectMultiScale(gray, 1.1, 3)
+            print("[DEBUG] Face count: ", len(faces))
 
             for (x, y, w, h) in faces: 
-                image = image.crop((x, y, x + w, y + h))
-                image = image.resize((224, 224))
+                image = image[y:y+h, x:x+w]
                 break
             
-            if len(faces) == 0:
-                image = image.resize((224, 224))
+            image = cv2.resize(image, (224, 224))
 
             # Save the image to see if it is cropped correctly
-            #image.save('test.jpg', 'JPEG')
+            cv2.imwrite('tmp/test.jpg', image)
 
             numpy_image = np.array(image)
             numpy_image = np.array(numpy_image).astype('float32') / 255
