@@ -166,3 +166,4 @@ models/
 media/
 datas/
 generated/
+tmp/
