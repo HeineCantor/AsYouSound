@@ -38,7 +38,7 @@ def index(request):
             image = cv2.resize(image, (224, 224))
 
             # Save the image to see if it is cropped correctly
-            cv2.imwrite('tmp/test.jpg', image)
+            #cv2.imwrite('tmp/test.jpg', image)
 
             numpy_image = np.array(image)
             numpy_image = np.array(numpy_image).astype('float32') / 255
